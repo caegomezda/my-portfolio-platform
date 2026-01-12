@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-// import { supabase } from "../lib/supabase";
+import { supabase } from "../lib/supabase";
 // console.log("SUPABASE URL:", process.env.NEXT_PUBLIC_SUPABASE_URL);
 
 
@@ -57,31 +57,31 @@ export default async function Home() {
   const supabase = getSupabase();
 
   const { data } = await supabase.from("projects").select("*");
-  const [projects, setProjects] = useState<Project[]>([]);
+  // const [projects, setProjects] = useState<Project[]>([]);
 
 
-  // return (
-  //   <pre>{JSON.stringify(data, null, 2)}</pre>
-  // );
-    return (
-    <main style={{ padding: 40 }}>
-      <h1>🚀 Mis Proyectos</h1>
-
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 20 }}>
-        {projects.map(p => (
-          <div key={p.id} style={{ border: "1px solid #ddd", padding: 20 }}>
-            <img src={p.logo_url} style={{ height: 80 }} />
-            <h3>{p.title}</h3>
-            <p>{p.description}</p>
-
-            <div>
-              {p.github_url && <a href={p.github_url}>GitHub</a>}{" "}
-              {p.apk_url && <a href={p.apk_url}>APK</a>}
-            </div>
-          </div>
-        ))}
-      </div>
-    </main>
+  return (
+    <pre>{JSON.stringify(data, null, 2)}</pre>
   );
+  //   return (
+  //   <main style={{ padding: 40 }}>
+  //     <h1>🚀 Mis Proyectos</h1>
+
+  //     <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 20 }}>
+  //       {projects.map(p => (
+  //         <div key={p.id} style={{ border: "1px solid #ddd", padding: 20 }}>
+  //           <img src={p.logo_url} style={{ height: 80 }} />
+  //           <h3>{p.title}</h3>
+  //           <p>{p.description}</p>
+
+  //           <div>
+  //             {p.github_url && <a href={p.github_url}>GitHub</a>}{" "}
+  //             {p.apk_url && <a href={p.apk_url}>APK</a>}
+  //           </div>
+  //         </div>
+  //       ))}
+  //     </div>
+  //   </main>
+  // );
 }
 
