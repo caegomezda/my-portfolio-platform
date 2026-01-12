@@ -1,29 +1,10 @@
-"use client";
-
-import { useEffect, useState } from "react";
-
-type Project = {
-  id: string;
-  title: string;
-  description: string;
-  category: string;
-  logo_url: string;
-  github_url: string;
-  apk_url: string;
-};
+export const dynamic = "force-dynamic";
 
 import { getSupabase } from "@/lib/supabaseClient";
 
 export default async function Home() {
   const supabase = getSupabase();
-
-  const { data, error } = await supabase
-    .from("projects")
-    .select("*");
-
-  if (error) return <pre>{error.message}</pre>;
+  const { data } = await supabase.from("projects").select("*");
 
   return <pre>{JSON.stringify(data, null, 2)}</pre>;
-  
 }
-
