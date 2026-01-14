@@ -2,6 +2,9 @@ export const dynamic = "force-dynamic";
 
 import { getSupabase } from "@/lib/supabaseClient";
 import Link from "next/link";
+import { FaLinkedin, FaGithub, FaWhatsapp } from "react-icons/fa";
+import { HiDownload } from "react-icons/hi";
+
 
 
 export default async function Home() {
@@ -31,19 +34,32 @@ export default async function Home() {
           <a
             href="https://www.linkedin.com/in/caegomezda/"
             target="_blank"
-            className="hover:text-blue-400 transition"
+            className="hover:text-blue-500 transition"
+            aria-label="LinkedIn"
           >
-            🔗
+            <FaLinkedin />
           </a>
+
           <a
             href="https://github.com/caegomezda"
             target="_blank"
             className="hover:text-gray-300 transition"
+            aria-label="GitHub"
           >
-            💻
+            <FaGithub />
+          </a>
+
+          <a
+            href="https://wa.me/573XXXXXXXXX"
+            target="_blank"
+            className="hover:text-green-500 transition"
+            aria-label="WhatsApp"
+          >
+            <FaWhatsapp />
           </a>
         </div>
       </header>
+
 
       {/* PROJECTS */}
       <main className="p-10">
@@ -75,14 +91,15 @@ export default async function Home() {
                     {project.category}
                   </span>
 
-                  <div className="flex gap-4">
+                  <div className="flex gap-4 text-xl">
                     {project.github_url && (
                       <a
                         href={project.github_url}
                         target="_blank"
-                        className="text-gray-300 hover:text-white"
+                        className="text-gray-400 hover:text-white transition"
+                        aria-label="GitHub Repository"
                       >
-                        💻
+                        <FaGithub />
                       </a>
                     )}
 
@@ -90,15 +107,18 @@ export default async function Home() {
                       <a
                         href={project.apk_url}
                         target="_blank"
-                        className="text-green-400 hover:text-green-300"
+                        className="text-green-400 hover:text-green-300 transition"
+                        aria-label="Download APK"
                       >
-                        ⬇
+                        <HiDownload />
                       </a>
                     )}
                   </div>
+
                 </div>
               </div>
             </div>
+            </Link>
           ))}
         </div>
       </main>
