@@ -1,6 +1,8 @@
 export const dynamic = "force-dynamic";
 
 import { getSupabase } from "@/lib/supabaseClient";
+import Link from "next/link";
+
 
 export default async function Home() {
   const supabase = getSupabase();
@@ -49,10 +51,10 @@ export default async function Home() {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {data?.map((project: any) => (
-            <div
-              key={project.id}
-              className="bg-gray-900 border border-gray-800 rounded-xl overflow-hidden shadow-lg hover:shadow-blue-500/20 transition"
-            >
+              <Link href={`/projects/${project.id}`} key={project.id}>
+              <div
+                className="bg-gray-900 border border-gray-800 rounded-xl overflow-hidden shadow-lg hover:shadow-blue-500/30 hover:scale-[1.02] transition cursor-pointer"
+              >
               {/* Logo */}
               {project.logo_url && (
                 <img
