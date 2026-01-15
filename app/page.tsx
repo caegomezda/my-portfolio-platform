@@ -4,6 +4,7 @@ import { getSupabase } from "@/lib/supabaseClient";
 import Link from "next/link";
 import { FaLinkedin, FaGithub, FaWhatsapp } from "react-icons/fa";
 import { HiDownload } from "react-icons/hi";
+import ProjectCard from "./components/ProjectCard";
 
 
 
@@ -62,66 +63,13 @@ export default async function Home() {
 
 
       {/* PROJECTS */}
-      <main className="p-10">
-        <h2 className="text-2xl font-semibold mb-8">Projects</h2>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {data?.map((project: any) => (
-              <Link href={`/projects/${project.id}`} key={project.id}>
-              <div
-                className="bg-gray-900 border border-gray-800 rounded-xl overflow-hidden shadow-lg hover:shadow-blue-500/30 hover:scale-[1.02] transition cursor-pointer"
-              >
-              {/* Logo */}
-              {project.logo_url && (
-                <img
-                  src={project.logo_url}
-                  alt={project.title}
-                  className="w-full h-48 object-contain bg-black p-4"
-                />
-              )}
-
-              <div className="p-6">
-                <h3 className="text-xl font-bold mb-2">{project.title}</h3>
-                <p className="text-gray-400 text-sm mb-4">
-                  {project.description}
-                </p>
-
-                <div className="flex items-center justify-between">
-                  <span className="text-xs uppercase tracking-widest text-blue-400">
-                    {project.category}
-                  </span>
-
-                  <div className="flex gap-4 text-xl">
-                    {project.github_url && (
-                      <a
-                        href={project.github_url}
-                        target="_blank"
-                        className="text-gray-400 hover:text-white transition"
-                        aria-label="GitHub Repository"
-                      >
-                        <FaGithub />
-                      </a>
-                    )}
-
-                    {project.apk_url && (
-                      <a
-                        href={project.apk_url}
-                        target="_blank"
-                        className="text-green-400 hover:text-green-300 transition"
-                        aria-label="Download APK"
-                      >
-                        <HiDownload />
-                      </a>
-                    )}
-                  </div>
-
-                </div>
-              </div>
-            </div>
-            </Link>
-          ))}
-        </div>
-      </main>
+    <main className="p-10">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        {data?.map((project: any) => (
+          <ProjectCard key={project.id} project={project} />
+        ))}
+      </div>
+    </main>
     </div>
   );
 }
